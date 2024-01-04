@@ -11,16 +11,10 @@ import java.time.Month;
 import java.util.List;
 
 @SpringBootApplication
-@RestController
 public class SpringbootdemoApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootdemoApplication.class, args);
-	}
-
-	@GetMapping
-	public List<User> hello(){
-		return List.of(new User(1L,"umarpir","password123", LocalDate.of(1999, Month.JANUARY,1), "4659456857412365"));
 	}
 
 }
