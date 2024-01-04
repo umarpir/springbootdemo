@@ -1,24 +1,38 @@
 package com.sbdemo.springbootdemo.user;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
-public class User {
-    private long id;
+@Entity
+@Table
+public class Users {
+    @Id
+    @SequenceGenerator(
+            name = "user_sequence",
+            sequenceName = "user_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "user_sequence"
+    )
+    private Long id;
     private String username;
     private String password;
     private LocalDate dob;
     private String cardNumber;
-    public User() {
+    public Users() {
     }
 
-    public User(String username, String password, LocalDate dob, String cardNumber) {
+    public Users(String username, String password, LocalDate dob, String cardNumber) {
         this.username = username;
         this.password = password;
         this.dob = dob;
         this.cardNumber = cardNumber;
     }
 
-    public User(long id, String username, String password, LocalDate dob, String cardNumber) {
+    public Users(long id, String username, String password, LocalDate dob, String cardNumber) {
         this.id = id;
         this.username = username;
         this.password = password;

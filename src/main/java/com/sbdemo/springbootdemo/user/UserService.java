@@ -1,6 +1,6 @@
 package com.sbdemo.springbootdemo.user;
 
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -8,9 +8,19 @@ import java.time.Month;
 import java.util.List;
 @Service
 public class UserService {
+    private final UserRepository userRepository;
 
-    public List<User> getUsers(){
-        return List.of(new User(1L,"umarpir","password123", LocalDate.of(1999, Month.JANUARY,1), "4659456857412365"));
+    @Autowired
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    public List<Users> getUsers(){
+     return userRepository.findAll();
+        }
+
+    public void addNewUser(Users users){
+        System.out.println(users);
     }
 
 }
