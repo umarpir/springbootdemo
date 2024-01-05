@@ -3,6 +3,7 @@ package com.sbdemo.springbootdemo.user;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 @Entity
 @Table
@@ -22,6 +23,8 @@ public class Users {
     private String password;
     private LocalDate dob;
     private String cardNumber;
+    @Transient
+    private int age;
     public Users() {
     }
 
@@ -30,6 +33,7 @@ public class Users {
         this.password = password;
         this.dob = dob;
         this.cardNumber = cardNumber;
+        this.age = Period.between(this.dob, LocalDate.now()).getYears();
     }
 
     public Users(long id, String username, String password, LocalDate dob, String cardNumber) {
@@ -38,6 +42,8 @@ public class Users {
         this.password = password;
         this.dob = dob;
         this.cardNumber = cardNumber;
+        this.age = Period.between(this.dob, LocalDate.now()).getYears();
+
     }
 
     public long getId() {
@@ -79,6 +85,11 @@ public class Users {
     public void setCardNumber(String cardNumber) {
         this.cardNumber = cardNumber;
     }
+
+    public int getAge(){
+        return age;
+    }
+
 
     @Override
     public String toString() {
