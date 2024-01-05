@@ -24,7 +24,7 @@ public class Users {
     private LocalDate dob;
     private String cardNumber;
     @Transient
-    private int age;
+    private long age;
     public Users() {
     }
 
@@ -33,7 +33,7 @@ public class Users {
         this.password = password;
         this.dob = dob;
         this.cardNumber = cardNumber;
-        this.age = Period.between(this.dob, LocalDate.now()).getYears();
+        this.age = Period.between(dob, LocalDate.now()).toTotalMonths();
     }
 
     public Users(long id, String username, String password, LocalDate dob, String cardNumber) {
@@ -42,7 +42,7 @@ public class Users {
         this.password = password;
         this.dob = dob;
         this.cardNumber = cardNumber;
-        this.age = Period.between(this.dob, LocalDate.now()).getYears();
+        this.age = Period.between(dob, LocalDate.now()).getYears();
 
     }
 
@@ -86,10 +86,11 @@ public class Users {
         this.cardNumber = cardNumber;
     }
 
-    public int getAge(){
-        return age;
+    public double getAge(){
+        Period period = Period.between(this.dob, LocalDate.now());
+        double months = period.getYears() * 12 + period.getMonths();
+        return months/12;
     }
-
 
     @Override
     public String toString() {

@@ -4,18 +4,18 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class UserService {
     private final UserRepository userRepository;
+    private final UserValidator userValidator;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, UserValidator userValidator) {
         this.userRepository = userRepository;
+        this.userValidator = userValidator;
     }
 
     public List<Users> getUsers(){
@@ -23,11 +23,11 @@ public class UserService {
         }
 
     public void addNewUser(Users users){
-        Optional<Users> user = userRepository.findByUsername(users.getUsername());
-        if(user.isPresent()) {
-            throw new IllegalStateException("username taken!");
-        }
+        userValidator.validUsername(users);
+        userValidator.validateUserAge(users);
+        userValidator.validateUserFields(users);
         userRepository.save(users);
+
     }
 
     public void deleteUser(String username) {
