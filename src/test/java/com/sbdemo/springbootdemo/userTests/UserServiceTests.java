@@ -1,12 +1,10 @@
 package com.sbdemo.springbootdemo.userTests;
 
-import com.sbdemo.springbootdemo.Exceptions.RegistrationValidationException;
 import com.sbdemo.springbootdemo.Exceptions.UsernameTakenException;
 import com.sbdemo.springbootdemo.user.UserRepository;
 import com.sbdemo.springbootdemo.user.UserService;
 import com.sbdemo.springbootdemo.user.Users;
 import jakarta.persistence.EntityNotFoundException;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,10 +13,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import static org.mockito.Mockito.*;
 @SpringBootTest
 public class UserServiceTests {
