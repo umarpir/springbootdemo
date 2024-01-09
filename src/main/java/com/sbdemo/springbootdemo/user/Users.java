@@ -95,11 +95,11 @@ public class Users {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", dob=" + dob +
-                ", cardNumber='" + cardNumber + '\'' +
+                "id" + id +
+                ", username'" + username + '\'' +
+                ", password'" + password + '\'' +
+                ", dob" + dob +
+                ", cardNumber'" + cardNumber + '\'' +
                 '}';
     }
 }
